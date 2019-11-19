@@ -48,19 +48,19 @@
     <div class="container ">
         <div class="row justify-content-center">
             <div class="col-12 col-md-4">
-				<form>
-				  <div class="form-group">
-				    <label for="user">Email</label>
-				    <input type="email" class="form-control" id="user" aria-describedby="emailHelp" placeholder="Seu email" required="">
-				    <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu email com terceiros.</small>
-				  </div>
-				  <div class="form-group">
-				    <label for="password">Senha</label>
-				    <input type="password" class="form-control" id="password" placeholder="Password" required="">
-				    <a href="cadastro.jsp"><small id="emailHelp" class="form-text text-primary">NÃ£o tem cadastro?</small></a>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Entrar</button>
-				</form>
+                <form>
+                  <div class="form-group">
+                      <label for="email">Email <span class="f_req">*</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="Seu email" >
+                    <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu email com terceiros.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="senha">Senha <span class="f_req">*</span></label>
+                    <input type="password" class="form-control" id="password" placeholder="Senha" >
+                    <a href="cadastro.jsp"><small id="naoTenhoCadastro" class="form-text text-primary">Não tem cadastro?</small></a>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
             </div>
         </div>
     </div>

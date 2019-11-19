@@ -49,39 +49,46 @@
     <div class="container ">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
-				<form class="row">
-				  <div class="form-group col-6">
-				    <label for="nome">Nome completo<span class="text-danger">*</span></label>
-				    <input type="text" class="form-control" id="nome" placeholder="Nome completo*" required="">
-				  </div>
+                <form name="cadastro" action="Controle" method="post" class="row">
+                  <div class="form-group col-6">
+                    <label for="nome">Nome completo<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo*">
+                  </div>
                   <div class="form-group col-6">
                     <label for="email">Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="Email*" required="">
+                    <input type="email" class="form-control" name="email" placeholder="Email*">
                   </div>
                   <div class="form-group col-4">
                     <label for="cpf">CPF<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="cpf" placeholder="CPF*" required="">
+                    <input type="number" class="form-control" name="cpf" placeholder="CPF*">
                   </div>
                   <div class="form-group col-4">
                     <label for="telefone">Telefone<span class="text-danger">*</span></label>
-                    <input type="tel" class="form-control" id="telefone" placeholder="Telefone*" required="">
+                    <input type="tel" class="form-control" name="telefone" placeholder="Telefone*">
                   </div>
                   <div class="form-group col-4">
                     <label for="data">Data de Nascimento<span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="data" placeholder="Data de Nascimento*" required="">
+                    <input type="date" class="form-control" name="dataNascimento" placeholder="Data de Nascimento*">
                   </div>
                   <div class="form-group col-6">
-                    <label for="password">Senha<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="password" placeholder="Senha*" required="">
+                    <label for="senha">Senha<span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" name="senha" placeholder="Senha*">
                   </div>
                   <div class="form-group col-6">
                     <label for="passwordTwo">Senha Novamente<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="passwordTwo" placeholder="Senha Novamente*" required="">
+                    <input type="password" class="form-control" name="senhaConfirmacao" placeholder="Senha Novamente*">
                   </div>
                   <div class="col-12">
-    				  <button type="submit" class="btn btn-primary">Começar</button>
+                    <button type="submit" name="btn btn-primary btCadastrar" value="Cadastrar" class="botao"></button>
+<!--                    <input type="hidden" name="flag" value="cadastrar">
+                    
+                    <label>&nbsp;</label><input type="submit" name="btCadastrar" value="Cadastrar" class="botao">-->
+
+                    <input type="hidden" name="flag" value="cadastrar">
+                    <input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">
+                    
                   </div>
-				</form>
+                </form> 
             </div>
         </div>
     </div>
