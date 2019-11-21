@@ -15,10 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.ConnectionFactory;
 
-/**
- * Author : Edson Melo de Souza, Me. <prof.edson.melo@gmail.com>
- * Since : 10/03/2016, 15:24:44
- */
 public class UsuariosDAO {
 
     // Declaração das variáveis globais
@@ -38,7 +34,7 @@ public class UsuariosDAO {
     /**
      * Realiza a inclusão de um novo registro no banco de dados
      *
-     * @param aluno
+     * @param usuario
      */
     @SuppressWarnings("empty-statement")
     public void inserir(Usuarios usuario) {
@@ -76,135 +72,28 @@ public class UsuariosDAO {
     }
 
     /**
-     * Realiza a atualização de um registro específico
-     *
-     * @param aluno
-     */
-    public void salvar(Aluno aluno) {
-        try {
-            // Declaração da variável para a instrução SQL
-            String sql = "UPDATE aluno SET nome=?, curso=?, disciplina=?, email=? WHERE ra=?";
-
-            // Atribui os valores ao objeto ps
-            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
-                // seta os valores
-                ps.setString(1, aluno.getNome());
-                ps.setString(2, aluno.getCurso());
-                ps.setString(3, aluno.getDisciplina());
-                ps.setString(4, aluno.getEmail());
-                ps.setString(5, aluno.getRa());
-
-                // Executa o sql (executeUpdate)
-                ps.executeUpdate();
-
-                // Fecha o ps
-                ps.close();
-            }
-
-            // Fecha a conexão
-            conexao.close();
-
-            // Retorna o status da inserção
-            status = "Atualizado com Sucesso!";
-
-        } catch (SQLException ex) {
-            // Lança um erro novo personalizado 
-            status = "Erro ao atualizar os dados do aluno";
-        }
-    }
-
-    /**
-     * Realiza a exclusão de um registro específico
-     *
-     * @param aluno
-     */
-    public void excluir(Aluno aluno) {
-        try {
-            // Declaração da variável para a instrução SQL
-            String sql = "DELETE FROM aluno WHERE ra=?";
-
-            // Atribui os valores ao objeto ps
-            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
-                // seta os valores
-                ps.setString(1, aluno.getRa());
-
-                // Executa o sql (executeUpdate)
-                ps.executeUpdate();
-
-                // Fecha o ps
-                ps.close();
-            }
-
-            // Fecha a conexão
-            conexao.close();
-
-            // Retorna o status da inserção
-            status = "Excluído com Sucesso!";
-
-        } catch (SQLException ex) {
-            // Lança um erro novo personalizado 
-            status = "Erro ao excluir o aluno";
-        }
-    }
-
-    /**
-     * Realiza a pesquisa no banco de dados e retorna um ou mais registros
-     *
-     * @param aluno
-     * @return Aluno
-     */
-    public List<Aluno> pesquisar(Aluno aluno) {
-        List<Aluno> alunos = new ArrayList<>();
-        String sql = "SELECT * FROM aluno WHERE ra like ? or nome like ? or curso like ?";
-        try {
-            PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setString(1, '%' + aluno.getRa() + '%');
-            ps.setString(2, '%' + aluno.getNome() + '%');
-            ps.setString(3, '%' + aluno.getCurso() + '%');
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                aluno = new Aluno();
-                aluno.setId(rs.getInt("id"));
-                aluno.setRa(rs.getString("ra"));
-                aluno.setNome(rs.getString("nome"));
-                aluno.setCurso(rs.getString("curso"));
-                aluno.setDisciplina(rs.getString("disciplina"));
-                aluno.setEmail(rs.getString("email"));
-                alunos.add(aluno);
-            }
-            return alunos;
-
-        } catch (SQLException ex) {
-            throw new RuntimeException("Falha ao listar os alunos.", ex);
-        }
-    }
-
-    /**
      * Realiza a listagem de TODOS os registros existentes no banco de dados
      *
-     * @return Aluno
+     * @return Usuario
      */
-    public List<Aluno> listar() {
-        List<Aluno> alunos = new ArrayList<>();
+    public List<Usuarios> listar() {
+        List<Usuarios> usuarios = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM aluno ORDER BY nome";
+            String sql = "SELECT * FROM usuarios ORDER BY nome";
             try (PreparedStatement ps = conexao.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
-                    Aluno aluno = new Aluno();
-                    aluno.setId(rs.getInt("id"));
-                    aluno.setRa(rs.getString("ra"));
-                    aluno.setNome(rs.getString("nome"));
-                    aluno.setCurso(rs.getString("curso"));
-                    aluno.setDisciplina(rs.getString("disciplina"));
-                    aluno.setEmail(rs.getString("email"));
+                    Usuarios usuario = new usuario();
+                    usuario.getNome();
+                    usuario.getEmail();
+                    usuario.getCpf();
+                    usuario.getTelefone();
+                    usuario.getDt_nascimento();
 
-                    alunos.add(aluno);
+                    usuarios.add(usuario);
                 }
             }
-            return alunos;
+            return usuario;
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,38 +101,6 @@ public class UsuariosDAO {
         }
     }
 
-    /**
-     * Pesquisa os dados para realizar o login
-     *
-     * @param aluno
-     * @return Aluno
-     */
-    public List<Aluno> login(Aluno aluno) {
-        List<Aluno> alunos = new ArrayList<>();
-        String sql = "SELECT * FROM aluno WHERE ra = ? and nome = ?";
-        try {
-            PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setString(1, aluno.getRa());
-            ps.setString(2, aluno.getNome());
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                aluno = new Aluno();
-                aluno.setId(rs.getInt("id"));
-                aluno.setRa(rs.getString("ra"));
-                aluno.setNome(rs.getString("nome"));
-                aluno.setCurso(rs.getString("curso"));
-                aluno.setDisciplina(rs.getString("disciplina"));
-                aluno.setEmail(rs.getString("email"));
-                alunos.add(aluno);
-            }
-            return alunos;
-
-        } catch (SQLException ex) {
-            throw new RuntimeException("Falha ao listar os alunos.", ex);
-        }
-    }
 
     /**
      * Método que retorna o status da operação realizada
