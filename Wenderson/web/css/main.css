@@ -1,0 +1,18 @@
+.main-content{
+    margin-top: 65px;
+}
+
+.main-content .jumbotron {
+    background-image: url("../images/banner1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.panel-collapse {
+    padding: 20px;
+    text-align: justify;
+}
+
+.video {
+    margin: auto !important;
+}
