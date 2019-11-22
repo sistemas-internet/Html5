@@ -49,7 +49,7 @@
     <div class="container ">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
-                <form name="cadastro" action="Controle" method="post" class="row">
+                <form name="cadastro" action="Controle" method="POST" class="row">
                   <div class="form-group col-6">
                     <label for="nome">Nome completo<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="nome" placeholder="Nome completo*">
@@ -57,18 +57,6 @@
                   <div class="form-group col-6">
                     <label for="email">Email<span class="text-danger">*</span></label>
                     <input type="email" class="form-control" name="email" placeholder="Email*">
-                  </div>
-                  <div class="form-group col-4">
-                    <label for="cpf">CPF<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="cpf" placeholder="CPF*">
-                  </div>
-                  <div class="form-group col-4">
-                    <label for="telefone">Telefone<span class="text-danger">*</span></label>
-                    <input type="tel" class="form-control" name="telefone" placeholder="Telefone*">
-                  </div>
-                  <div class="form-group col-4">
-                    <label for="data">Data de Nascimento<span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" name="dataNascimento" placeholder="Data de Nascimento*">
                   </div>
                   <div class="form-group col-6">
                     <label for="senha">Senha<span class="text-danger">*</span></label>
@@ -79,13 +67,8 @@
                     <input type="password" class="form-control" name="senhaConfirmacao" placeholder="Senha Novamente*">
                   </div>
                   <div class="col-12">
-                    <button type="submit" name="btn btn-primary btCadastrar" value="Cadastrar" class="botao"></button>
-<!--                    <input type="hidden" name="flag" value="cadastrar">
-                    
-                    <label>&nbsp;</label><input type="submit" name="btCadastrar" value="Cadastrar" class="botao">-->
-
-                    <input type="hidden" name="flag" value="cadastrar">
-                    <input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">
+                    <button type="submit" name="acao" class="btn btn-primary" value="cadastrar">Cadastrar</button>
+                    <button type="btn" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">Voltar</button>
                     
                   </div>
                 </form> 
@@ -98,7 +81,7 @@
 <footer class="footer mt-auto py-3">
     <div class="container">
 
-        <div class="footer-copyright text-center py-3">Â© 2019 Copyright:
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
             <a href="index.html"> Project Anxiety</a>
         </div>
     </div>
