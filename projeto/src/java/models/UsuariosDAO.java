@@ -1,7 +1,3 @@
-/**
- * Arquivo: AlunoDAO.java
- *
- */
 package models;
 
 import beans.Usuarios;
@@ -9,107 +5,77 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utils.ConnectionFactory;
 
 public class UsuariosDAO {
+    private final Connection conexao;
 
-    // Declaração das variáveis globais
-    private Connection conexao = null;
-    private String status;
-
-    /**
-     * Método construtor da classe
-     *
-     * @throws SQLException
-     */
     public UsuariosDAO() throws SQLException {
-        // Retorna a conexao no momento da chamada da classe
         this.conexao = ConnectionFactory.getInstance().getConnection();
     }
-
-    /**
-     * Realiza a inclusão de um novo registro no banco de dados
+    
+     /**
+     * Método Pesquisar - Realiza a pesquisa de um registro específico pelo ID
      *
-     * @param usuario
+     * @param u Objeto Usuarios
+     * @return List Lista com registros encontrados
+     * @throws java.sql.SQLException
      */
-    @SuppressWarnings("empty-statement")
-    public void inserir(Usuarios usuario) {
+    public String cadastrar(Usuarios u) throws SQLException {
+
+        String sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
+
         try {
-            // Declaração da variável para a instrução SQL
-            String sql = "insert INTO usuarios (nome, email, cpf, telefone, dt_nascimento) "
-                    + "VALUES (?,?,?,?,?)";
+            try ( 
+                PreparedStatement ps = conexao.prepareStatement(sql)) {
 
-            // Atribui os valores ao objeto ps
-            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
-                // seta os valores
-                ps.setString(1, usuario.getNome());
-                ps.setString(2, usuario.getEmail());
-                ps.setString(3, usuario.getCpf());
-                ps.setString(4, usuario.getTelefone());
-                ps.setString(5, usuario.getDt_nascimento());
-
-                // Executa o sql (execute)
+                ps.setString(1, u.getNome());
+                ps.setString(2, u.getEmail());
+                ps.setString(3, u.getSenha());
+                
                 ps.execute();
-
-                // Fecha o ps
-                ps.close();
             }
 
-            // Fecha a conexão
             conexao.close();
 
-            // Retorna o status da inserção
-            status = "Inserido com Sucesso!";
-
-        } catch (SQLException ex) {
-            // Lança um erro novo personalizado 
-            status = "Erro ao inserir o aluno";
+            return "Registro incluído com sucesso! <a href='index.html'>Clique aqui para fazer login</a>";
+        } catch (SQLException e) {
+            return e.getMessage();
         }
     }
-
-    /**
-     * Realiza a listagem de TODOS os registros existentes no banco de dados
+    
+     /**
+     * Método Pesquisar - Realiza a pesquisa de um registro específico pelo ID
      *
-     * @return Usuario
+     * @param u Objeto Usuarios
+     * @return List Lista com registros encontrados
+     * @throws java.sql.SQLException
      */
-    public List<Usuarios> listar() {
-        List<Usuarios> usuarios = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM usuarios ORDER BY nome";
-            try (PreparedStatement ps = conexao.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+    public Usuarios logar(Usuarios u) throws SQLException {
 
+        String sql = "SELECT * FROM usuarios where email = ? AND senha = ?";
+
+
+        try (
+            PreparedStatement ps = conexao.prepareStatement(sql)) {
+            
+            ps.setString(1, u.getEmail());
+            ps.setString(2, u.getSenha());
+            
+
+            try (
+                ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Usuarios usuario = new usuario();
-                    usuario.getNome();
-                    usuario.getEmail();
-                    usuario.getCpf();
-                    usuario.getTelefone();
-                    usuario.getDt_nascimento();
+                    u = new Usuarios();
 
-                    usuarios.add(usuario);
+                    u.setId(Integer.parseInt(rs.getString("id")));
+                    u.setEmail(rs.getString("email"));
+                    u.setNome(rs.getString("nome"));
                 }
             }
-            return usuario;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("Falha ao listar os alunos.", ex);
         }
+        conexao.close();
+
+        return u;
     }
-
-
-    /**
-     * Método que retorna o status da operação realizada
-     *
-     * @return String
-     */
-    @Override
-    public String toString() {
-        return status;
-    }
-
 }

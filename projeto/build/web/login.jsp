@@ -48,18 +48,20 @@
     <div class="container ">
         <div class="row justify-content-center">
             <div class="col-12 col-md-4">
-                <form>
+                <form name="form_mvc" class="row" action="Controle" method="post">
                   <div class="form-group">
-                      <label for="email">Email <span class="f_req">*</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="Seu email" >
+                    <label for="email">Email <span class="f_req">*</span></label>
+                    <input type="email" class="form-control" name="email" placeholder="Seu email" >
                     <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu email com terceiros.</small>
                   </div>
                   <div class="form-group">
                     <label for="senha">Senha <span class="f_req">*</span></label>
-                    <input type="password" class="form-control" id="password" placeholder="Senha" >
+                    <input type="password" class="form-control" name="senha" placeholder="Senha" >
                     <a href="cadastro.jsp"><small id="naoTenhoCadastro" class="form-text text-primary">Não tem cadastro?</small></a>
                   </div>
-                  <button type="submit" class="btn btn-primary">Entrar</button>
+                  <div class="col-12">
+                      <button type="submit" name="acao" class="btn btn-primary" value="login">Logar</button>
+                  </div>
                 </form>
             </div>
         </div>
