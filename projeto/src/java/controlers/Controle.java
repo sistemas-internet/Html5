@@ -55,7 +55,7 @@ public class Controle extends HttpServlet{
                     sessao.setAttribute("login", "logado");
                     sessao.setAttribute("id", us.getId());
 
-                    RequestDispatcher redireciona = request.getRequestDispatcher("index.html");
+                    RequestDispatcher redireciona = request.getRequestDispatcher("index.jsp");
                     redireciona.forward(request, response);
                 }
 

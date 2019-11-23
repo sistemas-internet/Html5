@@ -1,3 +1,14 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String login = (String) session.getAttribute("login");
+            
+    if(login == null){
+        RequestDispatcher redireciona = request.getRequestDispatcher("sair.jsp");
+        redireciona.forward(request, response);
+    }
+%>
+
+$>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +25,19 @@
         <a class="navbar-brand" href="index.html"><img src="images/buda.png" style="width: 40px"></a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Index </a>
-                </li>
+                <c:if test="${login == "logado"}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.jsp">Index </a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
                     <a class="nav-link" href="chat.html">Chat</a>
                 </li>
+                <c:if test="${login == "logado"}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gif.html">Gifs</a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
                     <a class="nav-link" href="sobre.html">FAQ</a>
                 </li>
@@ -28,9 +46,11 @@
                     &nbsp;
                     &nbsp;
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp"><img src="images/user.png" width="25px"> <span class="login">Login</span></a>
-                </li>
+                <c:if test="${login == "logado"}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="sair.jsp"><img src="images/user_logado.png" width="25px"> <span class="login">Logout</span></a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </nav>
@@ -44,13 +64,18 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row" style="margin: auto;">
+            <div class="col-md-4">
                 <h2>Chat</h2>
                 <p> O chat sera troca de mensagens privadas em tempo real. </p>
                 <a class="btn btn-secondary" href="chat.html" role="button"> Mais detalhes <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <h2>Gifs</h2>
+                <p> O intuito é fazer com que o usuário tente distrair sua mente.</p>
+                <a class="btn btn-secondary" href="gif.html" role="button"> Mais detalhes <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="col-md-4">
                 <h2>FAQ</h2>
                 <p> Permite que o usuário encontre as respostas para as suas perguntas com mais rapidez e facilidade.</p>
                 <a class="btn btn-secondary" href="sobre.html" role="button"> Mais detalhes <i class="fas fa-arrow-right"></i></a>
