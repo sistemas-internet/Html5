@@ -18,6 +18,7 @@ public class Controle extends HttpServlet{
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+
         if (request.getParameter("acao").contains("editar"))  {
             Usuarios u = new Usuarios();
             
@@ -69,6 +70,8 @@ public class Controle extends HttpServlet{
                 } else {
                     sessao.setAttribute("login", "logado");
                     sessao.setAttribute("id", us.getId());
+                    sessao.setAttribute("nome", us.getNome());
+                    sessao.setAttribute("email", us.getEmail());
 
                     RequestDispatcher redireciona = request.getRequestDispatcher("index.jsp");
                     redireciona.forward(request, response);
@@ -81,10 +84,7 @@ public class Controle extends HttpServlet{
                     redireciona.forward(request, response);
                 }
             }
-        
-        
-        
-    }
+        }
         
             
     }

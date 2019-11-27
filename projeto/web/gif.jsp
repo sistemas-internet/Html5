@@ -51,11 +51,11 @@
     <div class="jumbotron">
         <div class="container-fluid text-center">
             <h3 class="display-5">Se sentindo ansioso?</h3>
-            <p>O intuito Ã© fazer com que o usuÃ¡rio tente distrair sua mente</p>
+            <p>O intuito é fazer com que o usuário tente distrair sua mente</p>
         </div>
     </div>
     <div class="container-fluid">
-        <h3 class="display-5 text-center">Tente respirar no ritmo dessas animaÃ§Ãµes:</h3>
+        <h3 class="display-5 text-center">Tente respirar no ritmo dessas animações:</h3>
         <div id="carousel-example-1z" class="carousel slide carousel-fade"  data-interval="false" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">

@@ -2,6 +2,8 @@
 <%
     Integer id = (Integer) session.getAttribute("id");
     String login = (String) session.getAttribute("login");
+    String nome = (String) session.getAttribute("nome");
+    String email = (String) session.getAttribute("email");
 %>
 
 <!DOCTYPE html>
@@ -56,7 +58,7 @@
 <div class="main-content">
     <div class="jumbotron py-1">
         <div class="container">
-            <h1 class="display-4">Minha Conta</h1>
+            <h1 class="display-4">Meus Dados</h1>
         </div>
     </div>
     <div class="container ">
@@ -66,11 +68,11 @@
                   <div class="form-group col-6">
                     <label for="nome">Nome completo<span class="text-danger">*</span></label>
                     <input type="hidden" name="id" value="${id}">                    
-                    <input type="text" class="form-control" name="nome" placeholder="Nome completo*" required="">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo*" value="${nome}">
                   </div>
                   <div class="form-group col-6">
                     <label for="email">Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="Email*" required="">
+                    <input type="email" class="form-control" name="email" placeholder="Email*" value="${email}">
                   </div>
                  <div class="form-group col-6">
                     <label for="senha">Senha<span class="text-danger">*</span></label>
