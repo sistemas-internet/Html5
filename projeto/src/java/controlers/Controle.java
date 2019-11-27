@@ -15,8 +15,23 @@ import models.UsuariosDAO;
 
 
 public class Controle extends HttpServlet{
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        if (request.getParameter("acao").contains("editar"))  {
+            Usuarios u = new Usuarios();
+            
+            u.setId(Integer.parseInt(request.getParameter("id")));
+            u.setNome(request.getParameter("nome"));
+            u.setSenha(request.getParameter("senha"));
+            
+            UsuariosDAO cDao = new UsuariosDAO();
+            String resultado = cDao.editar(u);
+            request.setAttribute("mensagem", resultado);
+
+            RequestDispatcher redireciona = request.getRequestDispatcher("mensagem.jsp");
+            redireciona.forward(request, response);
+        }
 
         if (request.getParameter("acao").contains("cadastrar")) {
             Usuarios u = new Usuarios();

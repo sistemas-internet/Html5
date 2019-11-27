@@ -1,13 +1,41 @@
 package models;
 
 import beans.Usuarios;
+import utils.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utils.ConnectionFactory;
+// import java.util.ArrayList;
 
 public class UsuariosDAO {
+/*    private Connection con;
+    private ResultSet rs;
+    
+    public String conectar() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/project_anxiety",
+                    "root", ""
+            );
+            return "sucesso";
+        } catch (ClassNotFoundException ex) {
+            return "erro_driver";
+        } catch (SQLException ex1) {
+            return "erro_conectar";
+        }
+    }
+    
+    public void desconectar() {
+        try {
+            con.close();
+        } catch (SQLException x) {
+        }
+    }
+*/
+
     private final Connection conexao;
 
     public UsuariosDAO() throws SQLException {
@@ -38,7 +66,25 @@ public class UsuariosDAO {
 
             conexao.close();
 
-            return "Registro incluído com sucesso! <a href='index.html'>Clique aqui para fazer login</a>";
+            return "Registro incluído com sucesso! <a href='login.jsp'>Clique aqui para fazer login</a>";
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
+
+    public String editar(Usuarios u) throws SQLException {
+        String sql = "UPDATE usuarios SET nome = ? WHERE usuarios.id = ?;";
+
+        try {
+            try ( 
+                PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+                ps.setString(1, u.getNome());
+                ps.setInt(2, u.getId());
+                ps.execute();
+            }
+
+              return "Registro atualizado com sucesso! <a href='inicio.jsp'>Voltar à home</a>";
         } catch (SQLException e) {
             return e.getMessage();
         }
@@ -78,4 +124,29 @@ public class UsuariosDAO {
 
         return u;
     }
+    
+/*    public ArrayList getAll() {
+
+        String query = "select * from usuarios";
+        ArrayList lista = new ArrayList();
+        try {
+            this.conectar();
+            PreparedStatement ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuarios u = new Usuarios();
+                u.setId(rs.getInt(1));
+                u.setNome(rs.getString(2));
+                u.setEmail(rs.getString(3));
+                u.setSenha(rs.getString(4));
+
+                lista.add(u);
+            }
+        } catch (SQLException x) {
+            return null;
+        }
+        this.desconectar();
+        return lista;
+    }
+*/
 }

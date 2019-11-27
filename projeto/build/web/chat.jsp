@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,22 +45,33 @@
             </ul>
         </div>
     </nav>
-    </header>    
-    <div class="main-content">
-        <div class="jumbotron">
-            <div class="container-fluid text-center">
-                <h3 class="display-5"> <%out.print(request.getAttribute("mensagem"));%></h3>
+</header>
+
+<div class="main-content">
+    <div class="jumbotron">
+        <div class="container-fluid text-center">
+            <h1 class="display-4">Chat</h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center">
+                <img src="images/bot.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1" style="width: 110px; height: 110px">
+                <h1>EM MANUTENÇÃO</h1>
             </div>
         </div>
     </div>
-</body>
-<hr>
+
+    <hr>
 <footer class="footer mt-auto py-3">
     <div class="container">
 
-        <div class="footer-copyright text-center py-3">Project Anxiety Â© 2019 Copyright
+        <div class="footer-copyright text-center py-3">Project Anxiety © 2019 Copyright
             <a href="inicio.jsp"> Project Anxiety</a>
         </div>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
 </html>

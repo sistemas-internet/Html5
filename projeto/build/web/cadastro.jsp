@@ -8,7 +8,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Project Anxiety</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cadastro | Project Anxiety</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity=" sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -17,26 +18,27 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow fixed-top">
-        <a class="navbar-brand" href="index.html"><img src="images/buda.png" style="width: 40px"></a>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <a class="navbar-brand" href="inicio.jsp"><img src="images/buda.png" style="width: 40px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+                <c:if test="${login == "logado"}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="inicio.jsp">Index </a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Index </a>
+                    <a class="nav-link" href="chat.jsp">Chat</a>
                 </li>
+                <c:if test="${login == "logado"}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gif.jsp">Gifs</a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="chat.html">Chat</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="gif.html">Gifs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="sobre.html">FAQ</a>
-                </li>
-
-                <li class="nav-item d-none d-md-block">
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
+                    <a class="nav-link" href="sobre.jsp">FAQ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp"><img src="images/user.png" width="25px"> <span class="login">Login</span></a>
@@ -58,19 +60,19 @@
                 <form name="form_mvc" class="row" action="Controle" method="post">
                   <div class="form-group col-6">
                     <label for="nome">Nome completo<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome completo*">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome completo*" required="">
                   </div>
                   <div class="form-group col-6">
                     <label for="email">Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="Email*">
+                    <input type="email" class="form-control" name="email" placeholder="Email*" required="">
                   </div>
                  <div class="form-group col-6">
                     <label for="senha">Senha<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="senha" placeholder="Senha*">
+                    <input type="password" class="form-control" name="senha" placeholder="Senha*" required="">
                   </div>
                   <div class="col-12">
                     <button type="submit" name="acao" class="btn btn-primary" value="cadastrar">Cadastrar</button>
-                    <input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">
+                    <input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="btn btn-primary botao">
                     
                   </div>
                 </form> 
@@ -83,8 +85,8 @@
 <footer class="footer mt-auto py-3">
     <div class="container">
 
-        <div class="footer-copyright text-center py-3">Â© 2019 Copyright:
-            <a href="index.html"> Project Anxiety</a>
+        <div class="footer-copyright text-center py-3">Project Anxiety © 2019 Copyright
+            <a href="inicio.jsp"> Project Anxiety</a>
         </div>
     </div>
 </footer>
